@@ -19,8 +19,8 @@ public class DBConnect {
 	public void connect() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://192.168.68.108:3306?useTimezone=true&server=UTC",
-					"root", "H@rdline60");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost?useTimezone=true&server=UTC",
+					"root", "root");
 			System.out.println("Connected!");
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.println("Cannot connect to DB");
@@ -40,8 +40,8 @@ public class DBConnect {
 	public void createDB(String name) {
 		try {
 			connect();
-			String QueryDrop = "DROP DATABASE IF EXISTS" + name;
-			String Query = "CREATE DATABASE " + name;
+			String QueryDrop = "DROP DATABASE IF EXISTS " + name + ";";
+			String Query = "CREATE DATABASE " + name + ";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(QueryDrop);
 			st.executeUpdate(Query);
