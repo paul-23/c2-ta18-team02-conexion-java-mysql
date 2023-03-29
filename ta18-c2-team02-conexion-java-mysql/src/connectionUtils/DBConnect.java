@@ -51,4 +51,19 @@ public class DBConnect {
 			Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
+	
+	public void createTable(String db, String query) {
+		connect();
+	    try {
+	        String Querydb = "USE " + db + ";";
+	        Statement stdb = getConnection().createStatement();
+	        stdb.executeUpdate(Querydb);
+	        Statement st= getConnection().createStatement();
+	        st.executeUpdate(query);
+	        System.out.println("Tabla creada con exito!");
+	    } catch (SQLException ex){
+	        System.out.println(ex.getMessage());
+	        System.out.println("Error crando tabla.");
+	    }
+	}
 }
