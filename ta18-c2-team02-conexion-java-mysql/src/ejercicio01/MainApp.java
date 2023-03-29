@@ -10,8 +10,7 @@ public class MainApp {
 		String db = "Tienda";
 		conn.createDB(db);
 		
-		String fabricantes = "CREATE TABLE Fabricantes " 
-				+ "(codigo INT PRIMARY KEY AUTO_INCREMENT, Nombre VARCHAR(50)";
+		String fabricantes = "CREATE TABLE fabricantes (codigo INT PRIMARY KEY AUTO_INCREMENT, Nombre VARCHAR(50));";
 
 		String articulos = "CREATE TABLE articulos ("
 				+ "codigo INT NOT NULL,"
@@ -23,7 +22,7 @@ public class MainApp {
 				+ "FOREIGN KEY (codigo_fabricantes)"
 				+ " REFERENCES fabricantes (codigo)"
 				+ " ON DELETE CASCADE "
-				+ "ON UPDATE CASCADE" + ")";
+				+ "ON UPDATE CASCADE" + ");";
 
 		conn.createTable(db, fabricantes);
 		conn.createTable(db, articulos);

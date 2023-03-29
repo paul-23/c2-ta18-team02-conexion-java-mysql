@@ -63,7 +63,7 @@ public class DBConnect {
 	        System.out.println("Tabla creada con exito!");
 	    } catch (SQLException ex){
 	        System.out.println(ex.getMessage());
-	        System.out.println("Error crando tabla.");
+	        System.out.println("Error creando la tabla.");
 	    }
 	}
 }
