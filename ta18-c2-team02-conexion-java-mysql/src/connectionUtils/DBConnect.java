@@ -19,8 +19,8 @@ public class DBConnect {
 	public void connect() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost?useTimezone=true&server=UTC",
-					"root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost?useTimezone=true&server=UTC", "root",
+					"root");
 			System.out.println("Connected!");
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.println("Cannot connect to DB");
@@ -38,6 +38,9 @@ public class DBConnect {
 	}
 
 	public void createDB(String name) {
+		System.out.println("-------------------------------------------------------------\n"
+				+ "Nos intentamos conectar a las base de datos: " + name
+				+ "\n-------------------------------------------------------------");
 		try {
 			connect();
 			String QueryDrop = "DROP DATABASE IF EXISTS " + name + ";";
@@ -51,19 +54,41 @@ public class DBConnect {
 			Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
+
 	public void createTable(String db, String query) {
-		connect();
-	    try {
-	        String Querydb = "USE " + db + ";";
-	        Statement stdb = getConnection().createStatement();
-	        stdb.executeUpdate(Querydb);
-	        Statement st= getConnection().createStatement();
-	        st.executeUpdate(query);
-	        System.out.println("Tabla creada con exito!");
-	    } catch (SQLException ex){
-	        System.out.println(ex.getMessage());
-	        System.out.println("Error creando la tabla.");
-	    }
+		System.out.println("-------------------------------------------------------------\n"
+				+ "Intentamos crear la tabla"
+				+ "\n-------------------------------------------------------------");
+		try {
+			connect();
+			String Querydb = "USE " + db + ";";
+			Statement stdb = getConnection().createStatement();
+			stdb.executeUpdate(Querydb);
+			stdb.executeUpdate(query);
+			System.out.println("Tabla creada con exito!");
+			closeConnection();
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			System.out.println("Error creando la tabla.");
+		}
+	}
+
+	// METODO QUE INSERTA DATOS EN TABLAS MYSQL
+	public void insertData(String db, String Query) {
+		System.out.println("-------------------------------------------------------------\n"
+				+ "Intentamos insertar datos en la tabla"
+				+ "\n-------------------------------------------------------------");
+		try {
+			connect();
+			String Querydb = "USE " + db + ";";
+			Statement stdb = getConnection().createStatement();
+			stdb.executeUpdate(Querydb);
+			stdb.executeUpdate(Query);
+			System.out.println("Datos almacenados correctamente");
+			closeConnection();
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			JOptionPane.showMessageDialog(null, "Error en el aleacenamiento");
+		}
 	}
 }
