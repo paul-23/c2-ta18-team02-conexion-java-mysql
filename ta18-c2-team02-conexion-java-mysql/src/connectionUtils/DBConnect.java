@@ -39,14 +39,14 @@ public class DBConnect {
 
 	public void createDB(String name) {
 		try {
+			connect();
 			String QueryDrop = "DROP DATABASE IF EXISTS" + name;
 			String Query = "CREATE DATABASE " + name;
 			Statement st = connection.createStatement();
 			st.executeUpdate(QueryDrop);
 			st.executeUpdate(Query);
-			closeConnection();
-			connect();
 			JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name + " de forma exito");
+			closeConnection();
 		} catch (SQLException ex) {
 			Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
 		}

@@ -1,13 +1,9 @@
 package ejercicio01;
 
-import connectionUtils.DBConnect;
-
 public class MainApp {
 
 	public static void main(String[] args) {
 		Tienda tiendaInformatica = new Tienda();
-		DBConnect conn = new DBConnect();
-		conn.connect();
 		tiendaInformatica.createDatabase();
 		String fabricantes = "CREATE TABLE Fabricantes"
 		        + "(codigo INT PRIMARY KEY AUTO_INCREMENT, Nombre VARCHAR(50)";

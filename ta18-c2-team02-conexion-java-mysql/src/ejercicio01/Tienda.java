@@ -12,18 +12,19 @@ import connectionUtils.DBConnect;
  *
  */
 public class Tienda {
-	private DBConnect conn = new DBConnect();
+	public DBConnect conn = new DBConnect();
 	private String db;
 	
 	public void createDatabase() {
-		db = "Tienda";
-		conn.createDB(db);
+		conn.connect();
+		this.db = "Tienda";
+		conn.createDB(this.db);
 	}
 	
 	public void createTable(String query) {
-		
+		conn.connect();
 	    try {
-	        String Querydb = "USE " + db + ";";
+	        String Querydb = "USE " + this.db + ";";
 	        Statement stdb = conn.getConnection().createStatement();
 	        stdb.executeUpdate(Querydb);
 
