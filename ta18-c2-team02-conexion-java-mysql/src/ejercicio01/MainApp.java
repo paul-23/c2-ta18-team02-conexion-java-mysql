@@ -8,11 +8,12 @@ public class MainApp {
 		DBConnect conn = new DBConnect();
 		String db = "Tienda";
 		
+		conn.createDB(db); // Creamos la base de datos para tienda
 		
-		conn.createDB(db);
-		
+		// Insertamos datos en la tabla fabricantes
 		String fabricantes = "CREATE TABLE fabricantes (codigo INT PRIMARY KEY AUTO_INCREMENT, Nombre VARCHAR(50));";
 
+		// Insertamos datos en la tabla articulos
 		String articulos = "CREATE TABLE articulos ("
 				+ "codigo INT NOT NULL,"
 				+ "nombre NVARCHAR(100),"
@@ -24,8 +25,10 @@ public class MainApp {
 				+ " ON DELETE CASCADE "
 				+ "ON UPDATE CASCADE" + ");";
 		
+		// Insertamos datos en la tabla fabricantes
 		String insert_fabricantes = "INSERT INTO fabricantes (Nombre) VALUE (\"Fabricante 1\"), (\"Fabricante 2\"), (\"Fabricante 3\"), (\"Fabricante 4\"), (\"Fabricante 5\");";
 		
+		// Insertamos datos en la tabla articulos
 		String insert_articulos = "INSERT INTO articulos (codigo, nombre, precio, codigo_fabricantes) VALUES "
 				+ "(1, \"Articulo 1\", 35, 1),"
 				+ "(2, \"Articulo 2\", 10, 2),"
