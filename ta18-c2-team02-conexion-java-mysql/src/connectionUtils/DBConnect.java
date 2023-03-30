@@ -19,8 +19,8 @@ public class DBConnect {
 	public void connect() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost?useTimezone=true&server=UTC", "root",
-					"root");
+			connection = DriverManager.getConnection("jdbc:mysql://192.168.1.153?useTimezone=true&server=UTC", "root",
+					"Anyo.1997");
 			System.out.println("Connected!");
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.println("Cannot connect to DB");
