@@ -5,7 +5,15 @@ import connectionUtils.DBConnect;
 public class MainApp {
 
 	public static void main(String[] args) {
+		
+		// ************************************************
+		
+		// ******  Ejercicio 04 - Películas y Salas  ******
+		
+		// ************************************************
+		
 		DBConnect conn = new DBConnect();
+		conn.connect(); // Creamos la conexion con el servidor SQL
 		String db = "Cine";
 		
 		conn.createDB(db);
@@ -28,6 +36,7 @@ public class MainApp {
 		conn.createTable(db, salas);
 		conn.insertData(db, insertPeliculas);
 		conn.insertData(db, insertSalas);
+		conn.closeConnection(); // Cerramos conexión con el servidor SQL
 	}
 
 }
