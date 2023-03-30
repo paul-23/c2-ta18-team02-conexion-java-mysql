@@ -42,14 +42,12 @@ public class DBConnect {
 				+ "Nos intentamos conectar a las base de datos: " + name
 				+ "\n-------------------------------------------------------------");
 		try {
-			connect();
 			String QueryDrop = "DROP DATABASE IF EXISTS " + name + ";";
 			String Query = "CREATE DATABASE " + name + ";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(QueryDrop);
 			st.executeUpdate(Query);
 			JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name + " de forma exito");
-			closeConnection();
 		} catch (SQLException ex) {
 			Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -60,13 +58,11 @@ public class DBConnect {
 				+ "Intentamos crear la tabla"
 				+ "\n-------------------------------------------------------------");
 		try {
-			connect();
 			String Querydb = "USE " + db + ";";
 			Statement stdb = getConnection().createStatement();
 			stdb.executeUpdate(Querydb);
 			stdb.executeUpdate(query);
 			System.out.println("Tabla creada con exito!");
-			closeConnection();
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			System.out.println("Error creando la tabla.");
@@ -79,13 +75,11 @@ public class DBConnect {
 				+ "Intentamos insertar datos en la tabla"
 				+ "\n-------------------------------------------------------------");
 		try {
-			connect();
 			String Querydb = "USE " + db + ";";
 			Statement stdb = getConnection().createStatement();
 			stdb.executeUpdate(Querydb);
 			stdb.executeUpdate(Query);
 			System.out.println("Datos almacenados correctamente");
-			closeConnection();
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			JOptionPane.showMessageDialog(null, "Error en el aleacenamiento");
